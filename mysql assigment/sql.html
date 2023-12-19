@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sql</title>
+</head>
+<body>
+    <h4><mark>Create database:CREATE DATABASE company;</mark></h4>
+    
+    <ul>
+      <h4>Table1:</h4>
+        <li>CRATE EMPLOYE TABLE;</li>
+        <li>Example:</li>
+        <p>CREATE TABLE employe (em_id INT AUTO_INCREMENT PRIMARY KEY,First_NAME varchar(255),LAST_NAME varchar(255),SALARY INT,JOINING_DATE varchar(255),DEPARMENT varchar(255))</p>
+        <ul>
+            <li>Insert into row</li>
+            <li>Example:</li>
+            <p>INSERT INTO employe VALUES ('null','johan','abraham','100000','2013-01-01','banking'),('null','michael','clerk','800000','2013-01-01','insurance'),('null','roy','thomas','70000','2013-02-01','banking'),('null','tom','jose','60000','2013-02-01','insurance'),('null','jerry','pinto','65000','2013-01-01','insurance'),('null','philip','mathew','750000','2013-01-01','services'),
+                ('null','testname1','123','65000','2013-01-01','services'),
+                ('null','testname2','lname%','60000','2013-01-01','insurance')</p>
+        </ul>
+        
+        <h4>Table2:</h4>
+        <p>CREATE TABLE incentives (insentive_id int AUTO_INCREMENT PRIMARY KEY,EMPLOYE_REF_ID int,INCENTIVE_DATE varchar(255),INCENTIVE_AMT int)</p>
+        <li>Example:</li> 
+        <p>INSERT INTO incentives VALUES('null','1','2013-02-01','5000'),('null','2','2013-02-01','3000'),('null','3','2013-02-01','4000'),('null','1','2013-01-01','4500'),('null','2','2013-01-01','3500')</p>
+        
+    </ul>
+    <h4>a) Get First_Name from employee table using alias name “Employee Name”. </h4>
+      <ul>
+        <li>Example:</li>
+            <p>SELECT FIRST_NAME “EMPLOYEE NAME” FROM employe; </p>
+            <img src="1.png" style="width: 50%; height: auto;">
+      </ul>
+    <h4>b) Get FIRST_NAME, Joining year, Joining Month and Joining Date from employee table.</h4>
+       <ul>
+        <li>Example:</li>
+        <p>SELECT FIRST_NAME ,year(JOINING_DATE),month(JOINING_DATE),day(JOINING_DATE) FROM employe;</p>
+       <img src="2.png" style="width: 50%; height: auto;">   
+    </ul>
+    <h4>c) Get all employee details from the employee table order by First Name Ascending And Salary descending? </h4>
+       <ul>
+        <li> Example:</li>
+        <p>SELECT *FROM employe ORDER BY First_NAME ASC;</p>
+        <img src="3.png" style="width: 50%; height: auto;"><br><br>
+        <li>Example:</li>
+        <p>SELECT *FROM employe ORDER BY SALARY DESC;</p>
+        <img src="4.png" style="width: 50%; height: auto;">
+
+       </ul>
+       <h4>d) Get employee details from employee table whose first name contains „o‟. </h4>
+       <ul>
+        <li>Example:</li>
+       <p>SELECT *FROM employe WHERE First_NAME LIKE '%o%'</p>
+       <img src="5.png" style="width: 50%; height: auto;">
+       </ul>
+    <h4>e) Get employee details from employee table whose joining month is “January”. </h4>
+    <ul>
+        <li>Example:</li>
+    <p>SELECT * FROM employe WHERE monthname(JOINING_DATE)='january';</p>
+    <img src="6.png" style="width: 50%; height: auto;">
+    </ul>
+    <h4>f) Get department, total salary with respect to a department from employee table Order By total salary descending. </h4>
+     <ul>
+     <li>Example:</li>
+     <p>SELECT DEPARMENT,sum(SALARY) FROM employe group by DEPARMENT order by sum(SALARY) desc;</p>
+     <img src="7.png" style="width: 50%; height: auto;">
+   </ul>
+   <h4>g) Get department wise maximum salary from employee table order by salary ascending? </h4>
+   <ul>
+    <li>Example:</li>
+    <p>select DEPARMENT,max(SALARY) from employe group by DEPARMENT order by max(SALARY) asc; </p>
+    <img src="8.png" style="width: 50%; height: auto;">
+</ul>
+<h4>h) Select first_name, incentive amount from employee and incentives table for those Employees who have incentives and incentive amount greater than 3000 </h4>
+<ul>
+    <li>Example:</li>
+    <p>SELECT FIRST_NAME,INCENTIVE_AMT from employe join incentives on employe.em_id=incentives.
+        EMPLOYE_REF_ID where INCENTIVE_AMT>3000;</p>
+        <img src="9.png" style="width: 50%; height: auto;">
+</ul>
+<h4>i) Select 2nd Highest salary from employee table. </h4>
+<ul>
+    <li>Example:</li>
+    <p>SELECT max(SALARY) from employe where SALARY<(SELECT MAX(SALARY) from employe);</p>
+    <img src="10.png" style="width: 50%; height: auto;">
+</ul>
+<h4>j) Select first_name, incentive amount from employee and incentives table for all Employees who got incentives using left join. </h4>
+<ul>
+    <li>Example:</li>
+    <p>select first_name,incentive_amt from employee left join incentives on employee.em_id=incentives.
+        employee_ref_id;</p>
+        <img src="11.png" style="width: 50%; height: auto;">
+</ul>
+<h4>k) Create View OF Employee table in which store first name, last name and salary only </h4>
+<ul>
+    <li>Example:</li>
+    <p></p>
+</ul>
+<h4>l) Create Procedure to find out department wise highest salary. </h4>
+<li>Example:
+</li>
+<p>SELECT DEPARMENT,MAX(SALARY) from employe group by DEPARMENT;</p>
+<img src="12.png" style="width: 50%; height: auto;">
+
+</body>
+</html>
